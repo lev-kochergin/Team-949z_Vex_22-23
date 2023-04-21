@@ -290,7 +290,8 @@ private:
 			counter = counter + 10;
 		}
 
-		printf(" abs Degrees Turned at End = %f degrees turned at end = %f counter = %d abs(degrees) = %.2f \n", abs(getAngle() - startAngle), (getAngle() - startAngle), counter, abs(degrees));
+		printf(" abs Degrees Turned at End = %f degrees turned at end = %f counter = %d abs(degrees) = %.2f \n", 
+			abs(getAngle() - startAngle), (getAngle() - startAngle), counter, abs(degrees));
 		SetDrive(0, 0);
 		pros::c::delay(100);
 	}
@@ -632,6 +633,12 @@ public:
 			/**
 			 * Autonomous selection
 			 */
+
+			// #LEV is there a reason why these modify a global variable from inside the class 
+			// & then invoke a global function to output the autonomous mode to the system console 
+			// instead of doing it a more contained way since we are going the full object 
+			// oriented approach with a one-method class & everything
+
 			if (pros::lcd::read_buttons() == 4)
 			{
 				autonSide = AutonLeft;
